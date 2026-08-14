@@ -52,8 +52,8 @@ pipeline {
 APPLE_ID="${env.APPLE_ID}"
 APPLE_APP_SPECIFIC_PASSWORD="${env.APPLE_APP_SPECIFIC_PASSWORD}"
 APPLE_TEAM_ID="${env.APPLE_TEAM_ID}"
-CSC_LINK="${env.APPLICATION_CERTIFICATE_NAME}"
-CSC_INSTALLER_LINK="${env.INSTALLER_CERTIFICATE_NAME}"
+CSC_NAME="${env.APPLICATION_CERTIFICATE_NAME}"
+CSC_INSTALLER_NAME="${env.INSTALLER_CERTIFICATE_NAME}"
 """
 						// Create required Electron environment file
 						writeFile file: "electron-builder.env", text: envFileContent
