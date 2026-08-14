@@ -35,7 +35,7 @@ pipeline {
 			steps {
 				withCredentials([
 					// Keychain password
-					($class: 'KeychainPasswordAndPathBinding',
+					keychain(
 						 credentialsId: 'cc0d014b-7710-4ed2-a4c6-42f8bff11ad0',
 						 keychainPathVariable: 'KEYCHAIN_PATH',
 						 passwordVariable: 'KEYCHAIN_PASSWORD',
