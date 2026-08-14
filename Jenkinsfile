@@ -59,7 +59,7 @@ CSC_INSTALLER_LINK="${env.INSTALLER_CERTIFICATE_NAME}"
 						writeFile file: "electron-builder.env", text: envFileContent
 					}
 					sh '''
-						def KEYCHAIN_PATH = "${HOME}/Library/Keychains/login.keychain-db"
+						KEYCHAIN_PATH="${HOME}/Library/Keychains/login.keychain-db"
 						# Unlock default keychain with a timeout of 1 hour
 						security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
 						security set-keychain-settings -t 3600 -u "${KEYCHAIN_PATH}"
