@@ -35,11 +35,10 @@ pipeline {
 			steps {
 				withCredentials([
 					// Keychain password
-					keychainPasswordAndPathBinding(
-						 credentialsId: 'cc0d014b-7710-4ed2-a4c6-42f8bff11ad0',
-						 keychainPathVariable: 'KEYCHAIN_PATH',
-						 passwordVariable: 'KEYCHAIN_PASSWORD',
-						 inSearchPathVariable: 'KEYCHAIN_SET_SEARCH_PATH'
+					usernamePassword(
+						credentialsId: '7c8093cc-49a7-46af-b9bc-67af3e439099',
+						usernameVariable: 'KEYCHAIN_USER',
+						passwordVariable: 'KEYCHAIN_PASSWORD'
 					 ),
 					// Application Specific Password is required for Apple notarization
 					usernamePassword(
@@ -60,6 +59,7 @@ CSC_INSTALLER_LINK="${env.INSTALLER_CERTIFICATE_NAME}"
 						writeFile file: "electron-builder.env", text: envFileContent
 					}
 					sh '''
+						def KEYCHAIN_PATH = "${HOME}/Library/Keychains/login.keychain-db"
 						# Unlock default keychain with a timeout of 1 hour
 						security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
 						security set-keychain-settings -t 3600 -u "${KEYCHAIN_PATH}"
